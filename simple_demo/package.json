@@ -1,0 +1,19 @@
+{
+  "name": "simple_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@truffle/contract": "^4.3.13",
+    "cids": "^1.1.6",
+    "ipfs": "^0.54.2",
+    "ipfs-http-client": "^49.0.2",
+    "path": "^0.12.7",
+    "web3": "^1.2.7"
+  }
+}
