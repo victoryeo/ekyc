@@ -38,8 +38,9 @@ const deploy = async () => {
         from: accounts1[0],
         gas: 1500000,
         gasPrice: '0',
-        privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="]
+        privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc="],
             // this is public key from tm7 of 7node Quorum samples
+        PrivacyFlag: 3
     })
 
     console.log('Contract deployed to ', kycContract_1._address);
