@@ -23,14 +23,18 @@ contract eKYC {
   event UserExist(address user, bool value);
   event UserApproval(address user, bool approval, bool test);
 
-  bool public initKYC;
+  uint public initKYC;
 
-  constructor(bool arg) public {
+  constructor(uint arg) public {
     initKYC = arg;
   }
 
-  function startUserKYC() public {
-    initKYC = true;
+  function setUserKYC(uint arg) public {
+    initKYC = arg;
+  }
+
+  function getUserKYC() view public returns (uint) {
+    return initKYC;
   }
 
   function checkUserExistence(uint NID, uint DOB) public {
