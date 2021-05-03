@@ -42,12 +42,16 @@ const deploy = async () => {
             // this is public key from tm7 of 7node Quorum samples
         PrivacyFlag: 3
     })
+    // contract is deployed between node 1 and node 7
 
     console.log('Contract deployed to ', kycContract_1._address);
 
+    // node 5 can see the contract instance, but cannot access the contract
     var kycContract_5 = await new web3_5.eth.Contract(
         contractABI.abi, kycContract_1._address
     )
+
+    console.log('Contract deployed to :', kycContract_5._address);
 
     //await kycContract.methods.addUserMetaData().send({
     //    from: accounts[0], privateFor: ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
