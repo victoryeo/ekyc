@@ -110,9 +110,7 @@ web3_1.extend({
 });
 
 const extendCon = async () => {
-  let gg
-  gg = web3_1.quorumExtension
-  let kk = await gg.activeExtensionContracts()
+  let kk = await web3_1.quorumExtension.activeExtensionContracts()
   console.log(kk)
 }
 
