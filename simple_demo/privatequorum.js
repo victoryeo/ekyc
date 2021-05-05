@@ -19,7 +19,7 @@ const deploy = async () => {
     const accounts5 =  await web3_5.eth.getAccounts();
     console.log('Attempt to deploy from account', accounts5[0]);
 
-    console.log(await web3_5.eth.getGasPrice())
+    console.log("gas price:"+await web3_5.eth.getGasPrice())
     
     //var nodekey = '1be3b50b31734be48452c29d714941ba165ef0cbf3ccea8ca16c45e3d8d45fb0';
     //var wallet = wlt.fromPrivateKey(Buffer.from(nodekey, 'hex'));
@@ -71,3 +71,49 @@ const deploy = async () => {
     console.log(ret)
 }
 deploy();
+
+const methods = [
+	{
+		name: 'approveExtension',
+		call: 'quorumExtension_approveExtension',
+		params: 3,
+		inputFormatter: [web3_1.extend.formatters.inputAddressFormatter, null, web3_1.extend.formatters.inputTransactionFormatter]
+	},
+	{
+		name: 'extendContract',
+		call: 'quorumExtension_extendContract',
+		params: 4,
+		inputFormatter: [web3_1.extend.formatters.inputAddressFormatter, null, web3_1.extend.formatters.inputAddressFormatter, web3_1.extend.formatters.inputTransactionFormatter]
+	},
+	{
+		name: 'cancelExtension',
+		call: 'quorumExtension_cancelExtension',
+		params: 2,
+		inputFormatter: [web3_1.extend.formatters.inputAddressFormatter, web3_1.extend.formatters.inputTransactionFormatter]
+	},
+	{
+		name: 'getExtensionStatus',
+		call: 'quorumExtension_getExtensionStatus',
+		params: 1,
+		inputFormatter: [web3_1.extend.formatters.inputAddressFormatter]
+	},
+	{
+		name: 'activeExtensionContracts',
+		call: 'quorumExtension_activeExtensionContracts',
+		params: 0
+	}
+];
+
+web3_1.extend({
+  property: 'quorumExtension',
+  methods
+});
+
+const extendCon = async () => {
+  let gg
+  gg = web3_1.quorumExtension
+  let kk = await gg.activeExtensionContracts()
+  console.log(kk)
+}
+
+extendCon();
