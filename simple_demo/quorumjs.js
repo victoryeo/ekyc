@@ -66,6 +66,7 @@ web3.eth.getTransactionCount(`0x${accAddress}`).then(txCount => {
         .call({from: accAddress})
         .then(res => console.log(`result ${res}`))
         .catch(console.log);
+      extendCon(tx.contractAddress);  
       return simpleContract2;
     })
     .catch(console.log);
@@ -108,12 +109,19 @@ web3.extend({
   methods
 });
 
-const extendCon = async () => {
-  let gg
-  gg = web3.quorumExtension
-  let kk = await gg.activeExtensionContracts()
+const extendCon = async (contractAddress) => {
+  let kk = await web3.quorumExtension.activeExtensionContracts()
   console.log(kk)
-}
 
-extendCon();
+  await web3.quorumExtension.extendContract(
+    contractAddress,
+    "R56gy4dn24YOjwyesTczYa8m5xhP6hF2uTMCju/1xkY=",
+    "0x0638e1574728b6d862dd5d3a3e0942c3be47d996",
+    {"from":accAddress,
+     "value":"0x0",
+     "privateFor":["R56gy4dn24YOjwyesTczYa8m5xhP6hF2uTMCju/1xkY="],
+     "privacyFlag":1
+    }
+  )
+}
  
