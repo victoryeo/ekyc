@@ -60,7 +60,7 @@ const deploy = async () => {
     accounts5 =  await web3_5.eth.getAccounts();
     console.log('Attempt to deploy from account', accounts5[0]);
 
-    console.log("gas price:"+await web3_5.eth.getGasPrice())
+    console.log("gas price:" + await web3_5.eth.getGasPrice())
     
     //var nodekey = '1be3b50b31734be48452c29d714941ba165ef0cbf3ccea8ca16c45e3d8d45fb0';
     //var wallet = wlt.fromPrivateKey(Buffer.from(nodekey, 'hex'));
@@ -94,15 +94,17 @@ const deploy = async () => {
 
     console.log('Contract deployed to :', kycContract_5._address);
 
-    //await kycContract.methods.addUserMetaData().send({
-    //    from: accounts[0], privateFor: ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-    //await kycContract.methods.checkUserExistence(1, 123).send({
-    //    from: accounts[0], gasPrice: '0', privateFor: ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
-    //kycContract.getPastEvents('UserExist', {fromBlock: 0, toBlock: 'latest'}, {})
-    //.then(function(events){
-    //  console.log("then")
-    //  console.log(events) // same results as the optional callback above
-    //})
+    await kycContract_5.methods.addUserMetaData().send({
+        from: accounts5[0], privateFor: ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+        // this is public key from tm 1 of 7node Quorum samples
+    await kycContract_5.methods.checkUserExistence(1, 123).send({
+        from: accounts5[0], gasPrice: '0', privateFor: ["BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo="]})
+    kycContract_5.getPastEvents('UserExist', {fromBlock: 0, toBlock: 'latest'}, {})
+    .then(function(events){
+     console.log("then")
+      console.log(events) 
+      // node 5 cannot see the events because it is not a party in the contract
+    })
 
     await kycContract_1.methods.setUserKYC(39).send(
         {from: accounts1[0], privateFor: ["ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc"], PrivacyFlag: 3})
